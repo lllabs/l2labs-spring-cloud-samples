@@ -1,0 +1,9 @@
+rootProject.name = 'l2labs-spring-cloud-samples'
+
+
+include 'oauth2-server-basic'
+include 'oauth2-server-jwt'
+include 'resource-security-basic'
+include 'resource-oauth2-basic'
+include 'resource-oauth2-sso'
+include 'resource-oauth2-jwt'

@@ -1,0 +1,11 @@
+server.port: 9090
+
+spring.security.user:
+  name: user
+  password: 111
+  roles: USER
+
+logging.level:
+  org.springframework:
+    security: debug
+    boot: debug
