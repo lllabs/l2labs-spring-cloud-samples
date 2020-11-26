@@ -1,4 +1,4 @@
-package samples.config;
+package spring.cloud.samples.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -19,12 +19,12 @@ public class OAuth2ServerConfiguration extends AuthorizationServerConfigurerAdap
 
     /**
      * endpoint 에 대한 접근 권한 설정.
-     * /oauth/authorize         OAuth Login Form & Redirect
-     * /oauth/confirm_access
-     * /oauth/error
-     * POST: /oauth/token       : Default Basic Auth
-     * POST: /oauth/check_token : Default denyAll()
-     * POST: /oauth/token_key   : Default denyAll()
+     * /oauth/authorize         : OAuth Login Form & Redirect
+     * /oauth/confirm_access    :
+     * /oauth/error             :
+     * POST: /oauth/token       : access token or JWT 발급.   Default Basic Auth.
+     * POST: /oauth/check_token : access token 으로 User 조회. Default denyAll()     set checkTokenAccess("denyAll()"|"isAuthenticated()"|"permitAll()")
+     * POST: /oauth/token_key   : JWT 토큰의 공개 키 조회.        Default denyAll()     set tokenKeyAccess( ... )
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -42,8 +42,8 @@ public class OAuth2ServerConfiguration extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("iamclient")
-                .secret("{noop}iamsecret")
+                .withClient("client-id")
+                .secret("{noop}client-secret")
                 .authorizedGrantTypes("authorization_code", "password", "refresh_token")
                 .scopes("read", "write")
                 .accessTokenValiditySeconds(60 * 60)

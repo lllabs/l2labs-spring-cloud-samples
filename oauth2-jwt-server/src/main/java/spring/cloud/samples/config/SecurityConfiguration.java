@@ -1,4 +1,4 @@
-package samples.config;
+package spring.cloud.samples.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,8 +24,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("razy").password("{noop}111").roles("USER").authorities("ALL");
+        auth.inMemoryAuthentication()
+                .withUser("admin").password("{noop}111").roles("ADMIN")
+                .and()
+                .withUser("user").password("{noop}111").roles("USER");
     }
-
 
 }

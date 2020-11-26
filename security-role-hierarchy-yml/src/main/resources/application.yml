@@ -4,15 +4,13 @@ spring.h2.console.enabled: true
 spring.jpa.properties.hibernate.format_sql: true
 spring.jpa.hibernate.ddl-auto: update
 
-spring:
-  security:
-    role:
-      hierarchies:
-        ROLE_ADMIN:
-          - ROLE_USER
-        ROLE_USER:
-          - ROLE_POST
-          - ROLE_UPDATE
+spring.security.role:
+  hierarchies:
+    ROLE_ADMIN:
+      - ROLE_USER
+    ROLE_USER:
+      - ROLE_POST
+      - ROLE_UPDATE
 
 logging.level:
   org.springframework:
