@@ -1,0 +1,11 @@
+server.port: 9090
+
+spring.h2.console.enabled: true
+spring.jpa.properties.hibernate.format_sql: true
+spring.jpa.hibernate.ddl-auto: update
+
+logging.level:
+  org.springframework:
+    security: debug
+    boot: debug
+  org.hibernate.SQL: trace

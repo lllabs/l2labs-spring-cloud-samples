@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+description = "Spring Cloud Security OAuth2 Resource(API) Server"
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+    implementation "com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.2"  // 쿼리의 실제 파라미터 보여주기
+    runtimeOnly 'com.h2database:h2' // 예제에서는 사용하지 않으나, 설정하지 않으면 JDBC Connection 에러 발생. 원인 모르겠음
+}
