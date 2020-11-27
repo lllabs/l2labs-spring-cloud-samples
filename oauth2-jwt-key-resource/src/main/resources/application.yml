@@ -5,7 +5,6 @@ security.oauth2:
     client-id: client-id
     client-secret: client-secret
   resource:
-    #    token-info-uri: http://localhost:8081/oauth/check_token
     jwt.key-uri: http://localhost:8081/oauth/token_key
 
 logging.level:
