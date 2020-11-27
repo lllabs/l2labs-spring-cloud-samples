@@ -6,7 +6,7 @@ security.oauth2:
     client-secret: client-secret
   resource:
     #    token-info-uri: http://localhost:8081/oauth/check_token
-    jwt.key-value: SigningKey
+    jwt.key-uri: http://localhost:8081/oauth/token_key
 
 logging.level:
   org.springframework:

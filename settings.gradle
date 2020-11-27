@@ -1,5 +1,7 @@
 rootProject.name = 'l2labs-spring-cloud-samples'
 
+include 'common-config'
+
 include 'security-basic'
 include 'security-role-hierarchy'
 include 'security-role-hierarchy-yml'
@@ -9,6 +11,9 @@ include 'oauth2-basic-resource'
 
 include 'oauth2-jwt-server'
 include 'oauth2-jwt-resource'
+
+include 'oauth2-jwt-keypair-server'
+include 'oauth2-jwt-keypair-resource'
 
 include 'oauth2-sso-server'
 include 'oauth2-sso-resource'
