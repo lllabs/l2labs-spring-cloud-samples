@@ -21,30 +21,17 @@ public class OAuth2JwtServerConfiguration extends AuthorizationServerConfigurerA
 
     private final AuthenticationManager authenticationManager;
 
-    /**
-     * endpoint 에 대한 접근 권한 설정.
-     * /oauth/authorize         : OAuth Login Form & Redirect
-     * /oauth/confirm_access    :
-     * /oauth/error             :
-     * POST: /oauth/token       : access token or JWT 발급.   Default Basic Auth.
-     * POST: /oauth/check_token : access token 으로 User 조회. Default denyAll()     set checkTokenAccess("denyAll()"|"isAuthenticated()"|"permitAll()")
-     * POST: /oauth/token_key   : JWT 토큰의 공개 키 조회.        Default denyAll()     set tokenKeyAccess( ... )
-     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.checkTokenAccess("isAuthenticated()");
+        // Resource(API) Server 에서 OAuth2 서버에 설정된 JWT 검증 SigningKey 를 조회 할 수 있도록
+        // /oauth/token_key endpoint 의 접근권한을 설정한다. 기본 접근권한은 "denyAll()"
+        // isAuthenticated() 로 설정 할 경우 Resource(API) Server 에 client-id, client-secret 이 OAuth2 서버와 동일하게 설정 되어야 한다.
+        security.tokenKeyAccess("isAuthenticated()");   // or "permitAll()"
     }
 
-    /**
-     * Configure the {@link ClientDetailsService}, e.g. declaring individual clients and their properties. Note that
-     * password grant is not enabled (even if some clients are allowed it) unless an {@link AuthenticationManager} is
-     * supplied to the {@link #configure(AuthorizationServerEndpointsConfigurer)}. At least one client, or a fully
-     * formed custom {@link ClientDetailsService} must be declared or the server will not start.
-     *
-     * @param clients the client details configurer
-     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        // OAuth2 인증을 사용할 Client 설정.
         clients.inMemory()
                 .withClient("client-id")
                 .secret("{noop}client-secret")
@@ -55,23 +42,21 @@ public class OAuth2JwtServerConfiguration extends AuthorizationServerConfigurerA
                 .autoApprove(true);
     }
 
-    /**
-     * Configure the non-security features of the Authorization Server endpoints, like token store, token
-     * customizations, user approvals and grant types. You shouldn't need to do anything by default, unless you need
-     * password grants, in which case you need to provide an {@link AuthenticationManager}.
-     *
-     * @param endpoints the endpoints configurer
-     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
+                // 사용자(User) 인증을 위한 AuthenticationManager 설정
                 .authenticationManager(authenticationManager)
+
+                // JWT 변환을 위한 TokenConverter 설정
                 .accessTokenConverter(accessTokenConverter());
     }
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+
+        // JWT 변환 SigningKey 설정
         converter.setSigningKey("SigningKey");
         return converter;
     }

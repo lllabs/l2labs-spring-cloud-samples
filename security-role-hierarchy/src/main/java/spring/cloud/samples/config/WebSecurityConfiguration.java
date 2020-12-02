@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -30,15 +30,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("user").password("{noop}111").roles("USER");
     }
 
-    @Bean
-    public RoleHierarchiesMap roleHierarchiesMap() {
-        return new RoleHierarchiesMap();
+    @Bean("roleHierarchies")
+    public String roleHierarchies() {
+        Map<String, List<String>> roleHierarchyMap = new HashMap<>();
+        roleHierarchyMap.put("ROLE_ADMIN", Arrays.asList("ROLE_USER"));
+        roleHierarchyMap.put("ROLE_USER", Arrays.asList("ROLE_POST", "ROLE_COMMENT", "ROLE_FILE"));
+        return RoleHierarchyUtils.roleHierarchyFromMap(roleHierarchyMap);
+
+        /* 문자열로 직접 설정
+        return (new StringBuilder())
+                .append("ROLE_ADMIN > ROLE_USER\n")
+                .append("ROLE_USER > ROLE_POST\n")
+                .append("ROLE_USER > ROLE_COMMENT\n")
+                .append("ROLE_USER > ROLE_FILE")
+                .toString();
+         */
     }
 
     @Bean
     public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        roleHierarchy.setHierarchy(roleHierarchiesMap().toString());
+        roleHierarchy.setHierarchy(roleHierarchies());
         return roleHierarchy;
     }
 

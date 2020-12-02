@@ -9,11 +9,14 @@ include 'security-role-hierarchy-yml'
 include 'oauth2-basic-server'
 include 'oauth2-basic-resource'
 
-include 'oauth2-jwt-server'
-include 'oauth2-jwt-resource'
+include 'oauth2-jwt-basic-server'
+include 'oauth2-jwt-basic-resource'
 
 include 'oauth2-jwt-key-server'
 include 'oauth2-jwt-key-resource'
+
+include 'oauth2-jwt-key-uri-server'
+include 'oauth2-jwt-key-uri-resource'
 
 include 'oauth2-jwt-keypair-server'
 include 'oauth2-jwt-keypair-resource'
