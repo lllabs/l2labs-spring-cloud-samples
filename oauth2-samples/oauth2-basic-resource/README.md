@@ -1,4 +1,4 @@
-# Spring Cloud Security: OAuth2 Basic Server
+# Spring Cloud Security: OAuth2 Basic Resource(API)
 
 ##Checkout
 ```bash
@@ -8,7 +8,12 @@
 ## Run
 ```bash
 ] cd PROJECT_ROOT
+
+# Run OAuth2 Authentication Server
 ] ./gradlew :oauth2-samples:oauth2-basic-server:bootRun
+
+# Run OAuth2 Resource(API) Server
+] ./gradlew :oauth2-samples:oauth2-basic-resource:bootRun
 ```
 
 ## Test
@@ -30,24 +35,10 @@
 }
 ```
 
-### Get User Info with Access Token
+### Request to Resource Server
 ```bash
-] curl --location --request POST 'http://localhost:8081/oauth/check_token' \
---user client-id:client-secret \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'token=8bce7d8a-cc4f-4e6b-9c79-8558ee2913f5'
+] curl --location --request GET 'http://localhost:9090' \
+--header 'Authorization: Bearer 8bce7d8a-cc4f-4e6b-9c79-8558ee2913f5'
 
-{
-    "active":true,
-    "exp":1606990160,
-    "user_name":"admin",
-    "authorities":[
-        "ROLE_ADMIN"
-    ],
-    "client_id":"client-id",
-    "scope":[
-        "read",
-        "write"
-    ]
-}
+Welcome Home
 ```

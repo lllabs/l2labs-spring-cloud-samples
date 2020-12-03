@@ -32,7 +32,6 @@ public class OAuth2JwtServerConfiguration extends AuthorizationServerConfigurerA
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.checkTokenAccess("isAuthenticated()");
     }
 
     /**

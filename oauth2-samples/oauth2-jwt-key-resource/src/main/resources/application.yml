@@ -1,9 +1,6 @@
 server.port: 9090
 
 security.oauth2:
-  client:
-    client-id: client-id
-    client-secret: client-secret
   resource:
     jwt.key-value: SigningKey
 
