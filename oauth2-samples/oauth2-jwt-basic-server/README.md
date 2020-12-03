@@ -1,6 +1,6 @@
 # Spring Cloud Security: OAuth2 JWT Server
 
-##Checkout
+## Checkout
 ```bash
 ] git clone https://github.com/lllabs/l2labs-spring-cloud-samples.git
 ```
