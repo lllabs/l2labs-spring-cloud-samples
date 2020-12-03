@@ -3,7 +3,7 @@ plugins {
     id 'java-library'
 }
 
-description = "Spring Cloud Security OAuth2 Server"
+description = "Spring Cloud Security OAuth2 Resource(API) Server"
 
 dependencies {
     implementation project(':common-config')
