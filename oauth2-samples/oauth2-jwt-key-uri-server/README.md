@@ -29,7 +29,7 @@
 --user client-id:client-secret \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=password' \
---data-urlencode 'username=admin' \
+--data-urlencode 'username=user' \
 --data-urlencode 'password=111'
 
 {
