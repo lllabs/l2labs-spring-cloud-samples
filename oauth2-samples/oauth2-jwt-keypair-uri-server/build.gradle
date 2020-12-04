@@ -3,10 +3,10 @@ plugins {
     id 'java-library'
 }
 
-description = "Spring Cloud Security OAuth2 Resource(API) Server"
+description = "Spring Cloud Security OAuth2 Server"
 
 dependencies {
     implementation project(':common-config')
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure'
+    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 }

@@ -5,7 +5,10 @@ security.oauth2:
     client-id: client-id
     client-secret: client-secret
   resource:
-    jwt.key-uri: http://localhost:8081/oauth/token_key
+    jwt.key-value: |
+      -----BEGIN PUBLIC KEY-----
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnuNvX12qHHH9pf2un0B7zki2iEH7XsaCSjrimX4p8ARlh0hZoqQbgkWo/DFi2gN/vDGjggZdu93qpY/Mg71S5dPW7kRC/NJggj9F6LFaeNmIz6HnuBZNC5gQYtrpg2u0hHvr1nDnTyZH9GPSOzRjjdEkAkHag0+YR9LkPTO3JJkd+4RhL3FBjPwsUrABK2YjuDlXa5KzGlMIt2dV7qQUrn4SisJaxqxJV/sLlMmg9CK9HueeRtOn29mg6+yXBs7TRpSfUJCTk5+kf7GAdM0UdpznOvL5QcXK0QMv4QP/YBcjCASkH/TA15cs5JdpwdPsy6YiJ8oYm7yYbyDyzvpL0QIDAQAB
+      -----END PUBLIC KEY-----
 
 logging.level:
   org.springframework:

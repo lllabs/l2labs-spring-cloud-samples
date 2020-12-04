@@ -10,12 +10,12 @@
 ] cd PROJECT_ROOT
 
 # Run OAuth2 Authentication Server
-] ./gradlew :oauth2-samples:oauth2-jwt-keypair-server:bootRun
+] ./gradlew :oauth2-samples:oauth2-jwt-keypair-uri-server:bootRun
 
 # Run OAuth2 Resource(API) Server
 # Resource(API) Server 를 먼저 기동하면,
 # OAuth2 Server 로 부터 JWT SigningKey 를 받아 오지 못하여 에러가 발생한다.
-] ./gradlew :oauth2-samples:oauth2-jwt-keypair-resource:bootRun
+] ./gradlew :oauth2-samples:oauth2-jwt-keypair-uri-resource:bootRun
 ```
 
 ## Test

@@ -27,6 +27,8 @@ include 'oauth2-samples:oauth2-jwt-key-uri-server'
 include 'oauth2-samples:oauth2-jwt-key-uri-resource'
 include 'oauth2-samples:oauth2-jwt-keypair-server'
 include 'oauth2-samples:oauth2-jwt-keypair-resource'
+include 'oauth2-samples:oauth2-jwt-keypair-uri-server'
+include 'oauth2-samples:oauth2-jwt-keypair-uri-resource'
 include 'oauth2-samples:oauth2-sso-server'
 include 'oauth2-samples:oauth2-sso-resource'
 

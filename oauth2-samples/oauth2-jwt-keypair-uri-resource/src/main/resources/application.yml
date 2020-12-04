@@ -1,0 +1,13 @@
+server.port: 9090
+
+security.oauth2:
+  client:
+    client-id: client-id
+    client-secret: client-secret
+  resource:
+    jwt.key-uri: http://localhost:8081/oauth/token_key
+
+logging.level:
+  org.springframework:
+    security: debug
+    boot: debug
