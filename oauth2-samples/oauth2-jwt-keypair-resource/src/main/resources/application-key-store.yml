@@ -1,0 +1,16 @@
+security.oauth2.resource.jwt:
+  key-store: 'classpath:keystore.jks'
+  key-store-password: storepass
+  key-alias: security
+  key-password: keypass
+
+
+
+
+
+
+
+
+
+
+

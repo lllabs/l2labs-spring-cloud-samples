@@ -1,6 +1,4 @@
-server.port: 9090
-
-security.oauth2.resource.jwt.key-value: SigningKey
+server.port: 8081
 
 logging.level:
   org.springframework:
