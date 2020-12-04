@@ -1,4 +1,4 @@
-# Spring Cloud Security: OAuth2 with JWT Resource(API)
+# Spring Cloud Security: OAuth2 Resource(API) with JWT
 
 ## Checkout
 ```bash
