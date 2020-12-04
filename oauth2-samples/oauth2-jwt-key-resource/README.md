@@ -1,4 +1,4 @@
-# Spring Cloud Security: OAuth2 JWT Resource(API)
+# Spring Cloud Security: OAuth2 JWT Resource(API) with SigningKey
 
 ## Checkout
 ```bash
@@ -17,7 +17,7 @@
 ```
 
 ## Test
-### Get Access Token
+### Issue JWT
 ```bash
 ] curl --location --request POST 'http://localhost:8081/oauth/token' \
 --user client-id:client-secret \
@@ -36,7 +36,7 @@
 }
 ```
 
-### Request to Resource Server
+### Request to Resource Server with JWT
 ```bash
 ] curl --location --request GET 'http://localhost:9090' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDY5ODk4MzQsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9NQU5BR0VSIiwiUk9MRV9BRE1JTiJdLCJqdGkiOiIwMTBlNzBiYS1hZDhhLTQ1NzQtOWViNS1mMTI2MmYzYzU5OTkiLCJjbGllbnRfaWQiOiJjbGllbnQtaWQiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.N86kDwfc8pbHsAbs7hihDYmK8g_PLKt7x4kApGQgsR4'

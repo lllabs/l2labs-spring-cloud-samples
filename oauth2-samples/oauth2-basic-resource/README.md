@@ -17,7 +17,7 @@
 ```
 
 ## Test
-### Get Access Token
+### Issue Access Token
 ```bash
 ] curl --location --request POST 'http://localhost:8081/oauth/token' \
 --user client-id:client-secret \
@@ -35,7 +35,7 @@
 }
 ```
 
-### Request to Resource Server
+### Request to Resource Server with Access Token
 ```bash
 ] curl --location --request GET 'http://localhost:9090' \
 --header 'Authorization: Bearer 8bce7d8a-cc4f-4e6b-9c79-8558ee2913f5'

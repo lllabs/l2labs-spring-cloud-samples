@@ -12,7 +12,7 @@
 ```
 
 ## Test
-### Get Access Token
+### Issue Access Token
 ```bash
 ] curl --location --request POST 'http://localhost:8081/oauth/token' \
 --user client-id:client-secret \
@@ -30,7 +30,7 @@
 }
 ```
 
-### Get User Info with Access Token
+### Authenticate Access Token
 ```bash
 ] curl --location --request POST 'http://localhost:8081/oauth/check_token' \
 --user client-id:client-secret \

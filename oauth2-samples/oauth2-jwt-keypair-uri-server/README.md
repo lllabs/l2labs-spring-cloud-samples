@@ -1,4 +1,4 @@
-# Spring Cloud Security: OAuth2 JWT Server
+# Spring Cloud Security: OAuth2 JWT Server provide Public Key URI
 
 ## Checkout
 ```bash
@@ -12,7 +12,7 @@
 ```
 
 ## Test
-### Get JWT SigningKey
+### Get JWT Public Key
 ```bash
 ] curl --location --request GET 'http://localhost:8081/oauth/token_key' \
 --user client-id:client-secret
@@ -23,7 +23,7 @@
 }
 ```
 
-### Get Access Token
+### Issue JWT
 ```bash
 ] curl --location --request POST 'http://localhost:8081/oauth/token' \
 --user client-id:client-secret \
@@ -42,7 +42,7 @@
 }
 ```
 
-### Get User Info with Access Token
+### Validate JWT
 ```bash
 ] curl --location --request POST 'http://localhost:8081/oauth/check_token' \
 --user client-id:client-secret \
