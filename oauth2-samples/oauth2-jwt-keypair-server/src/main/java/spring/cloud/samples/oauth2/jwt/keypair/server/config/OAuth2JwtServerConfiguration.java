@@ -1,29 +1,31 @@
 package spring.cloud.samples.oauth2.jwt.keypair.server.config;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerProperties;
+import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerTokenServicesConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
-
-import java.security.KeyPair;
+import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 
 @Configuration
 @EnableAuthorizationServer
 @RequiredArgsConstructor
+@EnableConfigurationProperties(AuthorizationServerProperties.class)
+@Import(AuthorizationServerTokenServicesConfiguration.class)
 public class OAuth2JwtServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     private final AuthenticationManager authenticationManager;
+
+    private final AccessTokenConverter tokenConverter;
+
+    //private final AuthorizationServerProperties properties;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -53,19 +55,23 @@ public class OAuth2JwtServerConfiguration extends AuthorizationServerConfigurerA
                 .authenticationManager(authenticationManager)
 
                 // JWT 변환을 위한 TokenConverter 설정
-                .accessTokenConverter(accessTokenConverter());
+                .accessTokenConverter(tokenConverter);
     }
 
-    @Bean
-    public JwtAccessTokenConverter accessTokenConverter() {
-        KeyPair keyPair = new KeyStoreKeyFactory(
-                new ClassPathResource("keystore.jks"), "storepass".toCharArray()
-        ).getKeyPair("security", "keypass".toCharArray());
-
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setKeyPair(keyPair);
-
-        return converter;
-    }
+//    @Bean
+//    public JwtAccessTokenConverter accessTokenConverter() {
+//        Assert.notNull(properties.getJwt().getKeyStore(), "keyStore cannot be null");
+//        Assert.notNull(properties.getJwt().getKeyStorePassword(), "keyStorePassword cannot be null");
+//        Assert.notNull(properties.getJwt().getKeyAlias(), "keyAlias cannot be null");
+//
+//        KeyPair keyPair = new KeyStoreKeyFactory(
+//                new ClassPathResource("keystore.jks"), "storepass".toCharArray()
+//        ).getKeyPair("security", "keypass".toCharArray());
+//
+//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+////        converter.setKeyPair(keyPair);
+//
+//        return converter;
+//    }
 
 }

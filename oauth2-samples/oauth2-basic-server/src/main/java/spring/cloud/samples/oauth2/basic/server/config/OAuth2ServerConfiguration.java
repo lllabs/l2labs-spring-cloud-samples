@@ -7,6 +7,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 
 @Configuration
@@ -25,10 +26,10 @@ public class OAuth2ServerConfiguration extends AuthorizationServerConfigurerAdap
      * POST: /oauth/check_token : access token 으로 User 조회. Default denyAll()     set checkTokenAccess("denyAll()"|"isAuthenticated()"|"permitAll()")
      * POST: /oauth/token_key   : JWT 토큰의 공개 키 조회.        Default denyAll()     set tokenKeyAccess( ... )
      */
-//    @Override
-//    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-//        //security.checkTokenAccess("isAuthenticated()");
-//    }
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.checkTokenAccess("isAuthenticated()");
+    }
 
     /**
      * Configure the {@link ClientDetailsService}, e.g. declaring individual clients and their properties. Note that

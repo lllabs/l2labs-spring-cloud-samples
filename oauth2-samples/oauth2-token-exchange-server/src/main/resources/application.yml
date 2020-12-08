@@ -1,5 +1,7 @@
 server.port: 8081
 
+security.oauth2.authorization.jwt.key-value: SigningKey
+
 logging.level:
   org.springframework:
     security: debug

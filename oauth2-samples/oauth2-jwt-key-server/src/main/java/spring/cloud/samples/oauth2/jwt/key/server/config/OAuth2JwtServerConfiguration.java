@@ -1,7 +1,6 @@
 package spring.cloud.samples.oauth2.jwt.key.server.config;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,9 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
@@ -21,8 +18,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class OAuth2JwtServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     private final AuthenticationManager authenticationManager;
-
-    private final AuthorizationServerProperties properties;
 
     /**
      * endpoint 에 대한 접근 권한 설정.
@@ -67,15 +62,15 @@ public class OAuth2JwtServerConfiguration extends AuthorizationServerConfigurerA
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
-                .authenticationManager(authenticationManager);
-        //.accessTokenConverter(accessTokenConverter());
+                .authenticationManager(authenticationManager)
+                .accessTokenConverter(accessTokenConverter());
     }
 
-//    @Bean
-//    public JwtAccessTokenConverter accessTokenConverter() {
-//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        converter.setSigningKey("SigningKey");
-//        return converter;
-//    }
+    @Bean
+    public JwtAccessTokenConverter accessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("SigningKey");
+        return converter;
+    }
 
 }

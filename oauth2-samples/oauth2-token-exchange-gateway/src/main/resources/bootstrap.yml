@@ -10,3 +10,5 @@ spring.cloud.gateway.routes:
     uri: http://localhost:9090
     predicates:
       - Path=/**
+    filters:
+      - RemoveRequestHeader=Cookie

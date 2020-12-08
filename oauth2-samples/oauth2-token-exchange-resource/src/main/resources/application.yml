@@ -1,11 +1,10 @@
 server.port: 9090
 
-security.oauth2:
-  client:
-    client-id: client-id
-    client-secret: client-secret
-  resource:
-    token-info-uri: http://localhost:8081/oauth/check_token
+security.oauth2.resource.jwt:
+  key-store: 'classpath:keystore.jks'
+  key-store-password: storepass
+  key-alias: security
+  key-password: keypass
 
 logging.level:
   org.springframework:
