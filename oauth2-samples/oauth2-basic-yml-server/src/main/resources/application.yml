@@ -1,0 +1,22 @@
+server.port: 8081
+
+security.oauth2:
+  client:
+    client-id: client-id
+    client-secret: client-secret
+    authorized-grant-types:
+      - authorization_code
+      - password
+      - refresh_token
+    scope:
+      - read
+      - write
+    access-token-validity-seconds: 3600
+    refresh-token-validity-seconds: 25200
+  authorization:
+    check-token-access: isAuthenticated()
+
+logging.level:
+  org.springframework:
+    security: debug
+    boot: debug
