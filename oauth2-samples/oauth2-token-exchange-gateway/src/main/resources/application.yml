@@ -1,0 +1,26 @@
+server.port: 8080
+
+spring.profiles.active: ${SPRING_PROFILES_ACTIVE:jwt}
+
+spring.security.oauth2.client:
+  registration:
+    gateway:
+      provider: uaa
+      client-id: gateway
+      client-secret: secret
+      authorization-grant-type: authorization_code
+      redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+      scope: openid,profile,email,resource.read
+  provider:
+    uaa:
+      authorization-uri: http://localhost:8090/uaa/oauth/authorize
+      token-uri: http://uaa:8090/uaa/oauth/token
+      user-info-uri: http://uaa:8090/uaa/userinfo
+      user-name-attribute: sub
+      jwk-set-uri: http://uaa:8090/uaa/token_keys
+
+logging.level:
+  org.springframework:
+    boot: DEBUG
+    security: DEBUG
+    cloud.gateway: DEBUG

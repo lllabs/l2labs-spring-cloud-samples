@@ -1,0 +1,21 @@
+server.port: 9090
+
+spring.security.oauth2.client.provider:
+  oauth2-basic:
+    authorization-uri: http://localhost/oauth/authorize
+    tokenUri: http://localhost/oauth/token
+    jwk-set-uri: http://localhost/oauth/token_key
+    user-info-uri: http://localhost/oauth/user_info
+    user-info-authentication-method: header
+
+spring.security.oauth2.client.registration:
+  oauth2-client: oauth2-basic
+    provider: oauth2-basic
+    client-id: client-id
+    client-secret: client-secret
+    authorization-grant-type: password
+
+logging.level:
+  org.springframework:
+    security: debug
+    boot: debug

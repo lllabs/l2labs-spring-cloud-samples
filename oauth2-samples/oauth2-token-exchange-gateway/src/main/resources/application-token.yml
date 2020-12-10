@@ -1,0 +1,6 @@
+security.oauth2:
+  client:
+    client-id: client-id
+    client-secret: client-secret
+  resource:
+    token-info-uri: http://localhost:8081/oauth/check_token

@@ -1,10 +1,6 @@
 server.port: 9090
 
-security.oauth2.resource.jwt:
-  key-store: 'classpath:keystore.jks'
-  key-store-password: storepass
-  key-alias: security
-  key-password: keypass
+spring.profiles.active: ${SPRING_PROFILES_ACTIVE:token}
 
 logging.level:
   org.springframework:

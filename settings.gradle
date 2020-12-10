@@ -18,8 +18,10 @@ include 'security-samples:security-role-hierarchy'
 include 'security-samples:security-role-hierarchy-yml'
 
 include 'oauth2-samples:oauth2-basic-server'
-include 'oauth2-samples:oauth2-basic-yml-server'
+include 'oauth2-samples:oauth2-basic-server-yml'
 include 'oauth2-samples:oauth2-basic-resource'
+include 'oauth2-samples:oauth2-basic-resource-client'
+
 include 'oauth2-samples:oauth2-jwt-basic-server'
 include 'oauth2-samples:oauth2-jwt-basic-resource'
 include 'oauth2-samples:oauth2-jwt-key-server'

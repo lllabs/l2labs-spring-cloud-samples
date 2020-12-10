@@ -3,7 +3,10 @@
 # Gateway Server Bootstrap
 #
 ###############################################################################
-server.port: 8080
+spring.application.name: exchange-gateway
+
+spring.cloud.gateway.default-filters:
+  - TokenRelay
 
 spring.cloud.gateway.routes:
   - id: oauth2-resource
